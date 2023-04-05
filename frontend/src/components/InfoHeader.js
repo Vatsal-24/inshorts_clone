@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import useWindowDimensions from "./windowDimension";
 
 const style = {
   container: {
@@ -8,6 +9,10 @@ const style = {
     alignItems: "center",
     margin: "auto",
     height: "48px",
+    marginBottom: "30px",
+  },
+  smallScreenContainer: {
+    display: "none",
   },
   text: {
     color: "#fff",
@@ -29,9 +34,10 @@ export default function InfoHeader() {
     "https://assets.inshorts.com/website_assets/images/appstore.png";
   const googleStore =
     "https://assets.inshorts.com/website_assets/images/playstore.png";
+  const { height, width } = useWindowDimensions();
   return (
     <>
-      <Box style={style.container}>
+      <Box style={width >= 1220 ? style.container : style.smallScreenContainer}>
         <Typography style={style.text}>
           For the best experience use inshorts app on your smartphone
         </Typography>
