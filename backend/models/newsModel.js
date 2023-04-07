@@ -1,34 +1,29 @@
 const mongoose = require("mongoose");
 
 const newsSchema = new mongoose.Schema({
+  source: {
+    type: Object,
+  },
   title: {
     type: String,
-    required: true,
   },
   author: {
     type: String,
-    required: true,
   },
   description: {
     type: String,
-    required: true,
   },
   url: {
     type: String,
-    required: true,
-    unique: true,
   },
-  timestamp: {
+  urlToImage: {
     type: String,
-    required: true,
   },
-  link: {
+  publishedAt: {
     type: String,
-    required: true,
   },
-  publisher: {
+  content: {
     type: String,
-    required: true,
   },
 });
 

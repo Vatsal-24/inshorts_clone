@@ -3,36 +3,18 @@ import Header from "./components/Header";
 import InfoHeader from "./components/InfoHeader";
 import { Box } from "@mui/material";
 import "./App.css";
-import useWindowDimensions from "./components/windowDimension";
 
 const style = {
   bodyContainer: {
     margin: "40px auto 0 auto",
     width: "55%",
   },
-  mediumScreenBodyContainer: {
-    margin: "40px auto 0 auto",
-    width: "75%",
-  },
-  smallScreenBodyContainer: {
-    margin: "40px auto 0 auto",
-    width: "85%",
-  },
 };
 function App() {
-  const { height, width } = useWindowDimensions();
   return (
     <div>
       <Header />
-      <Box
-        style={
-          width >= 1220
-            ? style.bodyContainer
-            : width >= 1000
-            ? style.mediumScreenBodyContainer
-            : style.smallScreenBodyContainer
-        }
-      >
+      <Box style={style.bodyContainer}>
         <InfoHeader />
         <Articles />
       </Box>

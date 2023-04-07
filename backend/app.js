@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const uploadDataByDefault = require("./default");
 const newsRouter = require("./routes/newsRoutes");
+const News = require("./models/newsModel");
 
 // creating express app
 const app = express();
@@ -21,15 +22,16 @@ const DB = process.env.DATABASE_URL.replace(
   process.env.DATABASE_PASSWORD
 );
 
-mongoose.connect(DB).then((con) => {
+mongoose.connect(DB).then(() => {
   console.log("DB connection successful");
 });
 
 // routes
 app.use("/news", newsRouter);
+
 // starting the server
 app.listen(process.env.PORT, () => {
   console.log("server is running successfully on port:", process.env.PORT);
 });
 
-uploadDataByDefault.uploadDataByDefault();
+// uploadDataByDefault.uploadDataByDefault();

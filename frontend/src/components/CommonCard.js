@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardContent, Grid, Typography } from "@mui/material";
-import useWindowDimensions from "./windowDimension";
+import newsImage from "../newsImage.jpg";
 
 const style = {
   card: {
@@ -22,12 +22,6 @@ const style = {
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-around",
-  },
-  mediumRightContainer: {
-    margin: "5px 0 0 25px",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "stretch",
   },
   title: {
     fontWeight: "300",
@@ -61,14 +55,17 @@ const style = {
 };
 export default function CommonCard(props) {
   const { data } = props;
-  const { height, width } = useWindowDimensions();
   return (
     <>
       <Card style={style.card}>
         <CardContent style={style.cardContentContainer}>
           <Grid container>
             <Grid item lg={5} md={5} sm={5} xs={12}>
-              <img src={data.url} alt="news" style={style.img} />
+              <img
+                src={data.urlToImage || newsImage}
+                alt="news"
+                style={style.img}
+              />
             </Grid>
             <Grid
               item
@@ -77,30 +74,26 @@ export default function CommonCard(props) {
               md={7}
               sm={7}
               xs={12}
-              style={
-                width >= 1220
-                  ? style.rightContainer
-                  : style.mediumRightContainer
-              }
+              style={style.rightContainer}
               spacing={2}
             >
               <Typography style={style.title}>{data.title}</Typography>
               <Typography style={style.author}>
-                <b>Short</b> by {data.author} /{" "}
-                {new Date(data.timestamp).toDateString()}
+                <b>Short</b> by {data.author || "Vatsal"} /{" "}
+                {new Date(data.publishedAt).toDateString()}
               </Typography>
               <Typography style={style.description}>
-                {data.description}
+                {data.content || data.description}
               </Typography>
               <Typography style={style.publisher}>
                 read more at{" "}
                 <a
-                  href={data.link}
+                  href={data.url}
                   target="_blank"
                   rel="noreferrer"
                   style={style.anchor}
                 >
-                  <b>{data.publisher}</b>
+                  <b>{data.source.name || "Vatsal News"}</b>
                 </a>
               </Typography>
             </Grid>

@@ -1,10 +1,11 @@
 import axios from "axios";
 
 const url = "http://localhost:5000";
-export const getNews = async () => {
+export const getNews = async (page, size = 5) => {
   try {
-    const res = await axios.get(`${url}/news`);
-    return res.data.news;
+    let res = await axios.get(`${url}/news?page=${page}&size=${size}`);
+    console.log(res.data);
+    return res.data;
   } catch (err) {
     console.log("Error while fetching news", err);
   }
